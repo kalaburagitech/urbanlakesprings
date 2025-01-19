@@ -7,19 +7,19 @@ const pricingData = [
   {
     title: "3 BHK Apartment",
     price: "$200,000",
-    image: "/images/property2.jpg",
+    image: "/images/property5.jpg",
     description: "Spacious and modern design with luxurious interiors.",
   },
   {
     title: "3 BHK Apartment",
     price: "$300,000",
-    image: "/images/property3.jpg",
+    image: "/images/property2.jpg",
     description: "Elegant apartments with premium features and amenities.",
   },
   {
     title: "3.5 BHK Apartment",
     price: "$400,000",
-    image: "/images/property4.jpg",
+    image: "/images/property1.jpg",
     description: "Exclusive high-end apartments for a superior lifestyle.",
   },
 ];

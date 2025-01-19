@@ -14,14 +14,15 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <Image 
-            src="/logo.jpeg"
-            alt="RealEstate Logo"
-            width={100} // ✅ Adjust width as needed
-            height={50} // ✅ Adjust height as needed
-            priority // ✅ Ensures fast loading
-            className="h-auto w-auto object-contain"
-          />
+        <Image 
+  src="/logo.jpeg"
+  alt="RealEstate Logo"
+  width={100} 
+  height={50} 
+  priority
+  className="h-[40px] w-[80px] object-contain" // ✅ Force fixed size
+/>
+
         </Link>
 
         {/* Mobile Menu Button */}

@@ -13,14 +13,24 @@ export default function FloorPlanPage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <section className="container mx-auto py-16 px-4 text-center">
+    <section className="container mx-auto py-16 px-4 text-center ">
       {/* Heading */}
-      <h1 className="text-4xl font-bold text-gray-900 mb-4">
+      <h1 className="text-4xl font-bold text-gray-900 mb-4 mt-3">
         NCC Urban Lake Springs Floor Plans & Master Plan
       </h1>
       <p className="text-lg text-gray-600 mb-8">
         Exquisite Designs – Curated Exclusively For YOU!
       </p>
+      <p className="text-lg text-gray-600 mb-8">
+      A Legacy of Distinction, Nurtured by the Luxury of the Lake
+
+Located in the heart of JP Nagar, South Bengaluru, NCC Urban Lake Springs redefines luxurious lakeside living. These Vastu-compliant residences offer breathtaking lake views, abundant natural light, and optimal ventilation, ensuring a serene yet practical living environment.
+
+A legacy by the lake, where timeless elegance meets modern living, creating a home that will endure for generations
+      </p>
+
+      <p>A Vision of Excellence in Real Estate Development
+      NCC Urban Infrastructure Limited is a subsidiary of NCC Limited, one of India’s leading construction and infrastructure companies with a strong legacy of excellence. As a reputed real estate developer, NCC Urban is committed to creating world-class residential and commercial spaces that redefine luxury, comfort, and sustainability.</p>
 
       {/* Floor Plan Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">

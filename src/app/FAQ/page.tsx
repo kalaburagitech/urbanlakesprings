@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 interface FAQItem {
   question: string;
@@ -42,23 +43,44 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index); // ✅ Only one opens at a time
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="container mx-auto px-4 py-16">
-      {/* Section Title */}
-      <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      className="container mx-auto px-6 py-16"
+    >
+      {/* ⭐ FAQ Title with Premium Gradient */}
+      <motion.h2
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-center drop-shadow-lg mb-12 font-[Playfair Display]"
+      >
         Frequently Asked Questions
-      </h2>
+      </motion.h2>
 
-      {/* Grid Layout for Equal Distribution */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+      {/* FAQ Grid - Smooth Motion Effect */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto"
+      >
         {faqs.map((faq, index) => (
-          <div key={index} className="w-full">
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+            className="w-full"
+          >
             <button
               onClick={() => toggleFAQ(index)}
-              className="w-full flex justify-between items-center px-6 py-4 text-left text-gray-900 font-semibold text-lg bg-white shadow-md rounded-lg border border-gray-300 hover:bg-gray-100 transition duration-300"
+              className="w-full flex justify-between items-center px-6 py-4 text-left text-gray-900 font-semibold text-lg bg-[#FFFFFF] shadow-md rounded-lg border border-gray-400 hover:bg-[#BFECFF] transition duration-300"
               aria-expanded={openIndex === index}
             >
               {faq.question}
@@ -80,19 +102,25 @@ export default function FAQ() {
               </svg>
             </button>
 
-            {/* Answer Section */}
-            <div
+            {/* 🎭 Animated Answer Section */}
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{
+                height: openIndex === index ? "auto" : 0,
+                opacity: openIndex === index ? 1 : 0,
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
               className={`overflow-hidden transition-all duration-300 ${
                 openIndex === index
-                  ? "max-h-40 opacity-100 py-4 px-6 bg-gray-50 border border-gray-300 rounded-lg mt-2"
-                  : "max-h-0 opacity-0"
+                  ? "py-4 px-6 bg-yellow-100 border border-yellow-400 rounded-lg mt-2"
+                  : ""
               }`}
             >
-              <p className="text-gray-700">{faq.answer}</p>
-            </div>
-          </div>
+              <p className="text-gray-800">{faq.answer}</p>
+            </motion.div>
+          </motion.div>
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

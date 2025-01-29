@@ -19,6 +19,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "NCC Urban Lake Springs",
   description: "A Home of Elegance & Luxury",
+  icons: {
+    icon: "/logo.jpeg", // Update this if the filename changes
+  },
 };
 
 export default function RootLayout({

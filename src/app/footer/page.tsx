@@ -1,61 +1,74 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 text-gray-600">
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-4">DreamHome</h3>
-            <p className="text-sm">Find your perfect home with us.</p>
+    <footer className="bg-gradient-to-r from-[#754E1A] to-[#754E1A] text-white py-10">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          
+          {/* Logo & Intro */}
+          <div className="text-center md:text-left">
+            <h3 className="text-3xl font-bold tracking-wide">🏡 urbanlakesprings</h3>
+            <p className="text-sm mt-2">Find your perfect home with us.</p>
           </div>
-          <div>
-            <h4 className="text-md font-semibold mb-4">Quick Links</h4>
+
+          {/* Quick Links */}
+          <div className="text-center md:text-left">
+            <h4 className="text-lg font-semibold mb-4 border-b border-white pb-1">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/about" className="hover:text-primary">About Us</Link></li>
-              <li><Link href="/price" className="hover:text-primary">price</Link></li>
-              <li><Link href="/Floor Plan" className="hover:text-primary">Floor Plan</Link></li>
-              <li><Link href="/Location" className="hover:text-primary">Location</Link></li>
-              <li><Link href="/Gallery" className="hover:text-primary">Gallery</Link></li>
+              {["About Us", "Price", "Floor Plan", "Location", "Gallery", "Contact"].map((item, index) => (
+                <li key={index}>
+                  <Link href={`/${item.toLowerCase().replace(" ", "")}`} className="hover:underline">
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          <div>
-            <h4 className="text-md font-semibold mb-4">Contact Us</h4>
+
+          {/* Contact Info */}
+          <div className="text-center md:text-left">
+            <h4 className="text-lg font-semibold mb-4 border-b border-white pb-1">Contact Us</h4>
             <ul className="space-y-2 text-sm">
-              <li>post, opposite avalahalli lake, Royal Park Residency Layout 2, JP Nagar 9th Phase, Anjanapura, Bengaluru, Karnataka 560062, India</li>
-              <li>Phone: 9945264555</li>
-              <li>Email: Sales@urbanlakesprings.in</li>
+              <li className="leading-6">
+                📍 <span className="text-gray-100">post, opposite Avalahalli Lake, Royal Park Residency Layout 2, JP Nagar 9th Phase, Anjanapura, Bengaluru, Karnataka 560062, India</span>
+              </li>
+              <li className="text-lg font-bold text-black bg-white px-3 py-1 rounded-md inline-block shadow-md">
+                📞 <a href="tel:+919945264555">+91 99452 64555</a>
+              </li>
+              <li className="text-lg font-bold text-black bg-white px-3 py-1 rounded-md inline-block shadow-md">
+                ✉ <a href="mailto:Sales@urbanlakesprings.in">Sales@urbanlakesprings.in</a>
+              </li>
             </ul>
           </div>
-          <div>
-            <h4 className="text-md font-semibold mb-4">Follow Us</h4>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-primary">
-                <span className="sr-only">Facebook</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
-                </svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary">
-                <span className="sr-only">Instagram</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" />
-                </svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary">
-                <span className="sr-only">Twitter</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                </svg>
-              </a>
+
+          {/* Social Media & SVG Icons */}
+          <div className="text-center md:text-left">
+            <h4 className="text-lg font-semibold mb-4 border-b border-white pb-1">Follow Us</h4>
+            <div className="flex justify-center md:justify-start space-x-4">
+              
+            <div className="flex justify-center md:justify-start space-x-4 mt-4">
+
+              <img alt="Custom SVG 1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNDggNDgiIHdpZHRoPSI0OHB4IiBoZWlnaHQ9IjQ4cHgiPjxsaW5lYXJHcmFkaWVudCBpZD0iU1ZHSURfMV8iIHgxPSIzNy4wODEiIHgyPSIxMC45MTgiIHkxPSIxMC45MTgiIHkyPSIzNy4wODEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM2MGFmZmUiLz48c3RvcCBvZmZzZXQ9Ii4wMzMiIHN0b3AtY29sb3I9IiM2YWI0ZmUiLz48c3RvcCBvZmZzZXQ9Ii4xOTciIHN0b3AtY29sb3I9IiM5N2NiZmUiLz48c3RvcCBvZmZzZXQ9Ii4zNjIiIHN0b3AtY29sb3I9IiNiZGRlZmYiLz48c3RvcCBvZmZzZXQ9Ii41MjUiIHN0b3AtY29sb3I9IiNkYWVjZmYiLz48c3RvcCBvZmZzZXQ9Ii42ODciIHN0b3AtY29sb3I9IiNlZWY3ZmYiLz48c3RvcCBvZmZzZXQ9Ii44NDYiIHN0b3AtY29sb3I9IiNmYmZkZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmYiLz48L2xpbmVhckdyYWRpZW50PjxjaXJjbGUgY3g9IjI0IiBjeT0iMjQiIHI9IjE4LjUiIGZpbGw9InVybCgjU1ZHSURfMV8pIi8+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMmU5YmZlIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIzIiBkPSJNMzQuNjc4LDM5LjEwOUMzMS42NjEsNDEuMjQ1LDI3Ljk3Nyw0Mi41LDI0LDQyLjVDMTMuNzgzLDQyLjUsNS41LDM0LjIxNyw1LjUsMjQJYzAtMy4wMDksMC43MTgtNS44NDksMS45OTItOC4zNjEiLz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMyZTliZmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2Utd2lkdGg9IjMiIGQ9Ik0xMy45NDEsOC40NzFDMTYuODM2LDYuNTkyLDIwLjI5MSw1LjUsMjQsNS41YzEwLjIxNywwLDE4LjUsOC4yODMsMTguNSwxOC41YzAsMy40LTAuOTE3LDYuNTg3LTIuNTE4LDkuMzI0Ii8+PHBhdGggZmlsbD0iIzJlOWJmZSIgZD0iTTE3LDI5aDR2MTMuMjM1YzAuOTc5LDAuMTYsMS45NzYsMC4yNjUsMywwLjI2NXMyLjAyMS0wLjEwNSwzLTAuMjY1VjI5aDMuNjI1YzAuNTA0LDAsMC45My0wLjM3NiwwLjk5Mi0wLjg3NglsMC4zNzUtM2MwLjAzNi0wLjI4NC0wLjA1My0wLjU3LTAuMjQzLTAuNzg2QzMxLjU2LDI0LjEyMywzMS4yODcsMjQsMzEsMjRoLTR2LTMuNWMwLTEuMTAzLDAuODk3LTIsMi0yaDJjMC41NTIsMCwxLTAuNDQ3LDEtMQl2LTMuMzc1YzAtMC41MTgtMC4zOTYtMC45NS0wLjkxMS0wLjk5NkMzMS4wMywxMy4xMjQsMjkuNjIsMTMsMjcuODM0LDEzQzIzLjQyNywxMywyMSwxNS42MTcsMjEsMjAuMzY4VjI0aC00Yy0wLjU1MiwwLTEsMC40NDctMSwxCXYzQzE2LDI4LjU1MywxNi40NDgsMjksMTcsMjl6Ii8+PC9zdmc+" width={32} height={32}/>
+
+              <img alt="Custom SVG 2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNDggNDgiIHdpZHRoPSI0OHB4IiBoZWlnaHQ9IjQ4cHgiPjxsaW5lYXJHcmFkaWVudCBpZD0iU1ZHSURfMV8iIHgxPSIzOC41NzEiIHgyPSI5LjQyOSIgeTE9IjkuNDI5IiB5Mj0iMzguNTcxIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZmU2MGMxIi8+PHN0b3Agb2Zmc2V0PSIuMDMzIiBzdG9wLWNvbG9yPSIjZmU2YWM1Ii8+PHN0b3Agb2Zmc2V0PSIuMTk3IiBzdG9wLWNvbG9yPSIjZmU5N2Q3Ii8+PHN0b3Agb2Zmc2V0PSIuMzYyIiBzdG9wLWNvbG9yPSIjZmZiZGU1Ii8+PHN0b3Agb2Zmc2V0PSIuNTI1IiBzdG9wLWNvbG9yPSIjZmZkYWYwIi8+PHN0b3Agb2Zmc2V0PSIuNjg3IiBzdG9wLWNvbG9yPSIjZmZlZWY5Ii8+PHN0b3Agb2Zmc2V0PSIuODQ2IiBzdG9wLWNvbG9yPSIjZmZmYmZkIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZmIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI1NWR0lEXzFfKSIgZD0iTTE2LjUsNDEuNWgxNWM1LjUyMywwLDEwLTQuNDc3LDEwLTEwdi0xNWMwLTUuNTIzLTQuNDc3LTEwLTEwLTEwaC0xNWMtNS41MjMsMC0xMCw0LjQ3Ny0xMCwxMHYxNQlDNi41LDM3LjAyMywxMC45NzcsNDEuNSwxNi41LDQxLjV6Ii8+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmEyYWFiIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLXdpZHRoPSIzIiBkPSJNNDEuNSwyMS4wODVWMTYuNWMwLTUuNTIzLTQuNDc4LTEwLTEwLTEwaC0xNWMtNS41MjMsMC0xMCw0LjQ3Ny0xMCwxMHYyLjk4OSIvPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZhMmFhYiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMyIgZD0iTTYuNSwyNS42MTdWMzEuNWMwLDUuNTIyLDQuNDc3LDEwLDEwLDEwaDE1YzUuNTIyLDAsMTAtNC40NzgsMTAtMTB2LTQuNjA2Ii8+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmEyYWFiIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS13aWR0aD0iMyIgZD0iTTI0LDE1LjVjLTQuNjk0LDAtOC41LDMuODA2LTguNSw4LjVzMy44MDYsOC41LDguNSw4LjVzOC41LTMuODA2LDguNS04LjVTMjguNjk0LDE1LjUsMjQsMTUuNXoiLz48cGF0aCBmaWxsPSIjZmEyYWFiIiBkPSJNMzQsMTJjLTEuMTA1LDAtMiwwLjg5NS0yLDJzMC44OTUsMiwyLDJzMi0wLjg5NSwyLTJTMzUuMTA1LDEyLDM0LDEyeiIvPjwvc3ZnPg==" width={32} height={32}/>
+
+             <img alt="Custom SVG 2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciICB2aWV3Qm94PSIwIDAgNjQgNjQiIHdpZHRoPSI2NHB4IiBoZWlnaHQ9IjY0cHgiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIj48bGluZWFyR3JhZGllbnQgaWQ9ImZ6RjVLNzZ1flFQak1JZ0VUdDdiTWEiIHgxPSIzMiIgeDI9IjMyIiB5MT0iNS4yNSIgeTI9IjU4LjgzNCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHNwcmVhZE1ldGhvZD0icmVmbGVjdCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWE2ZGZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYzgyMmZmIi8+PC9saW5lYXJHcmFkaWVudD48cGF0aCBmaWxsPSJ1cmwoI2Z6RjVLNzZ1flFQak1JZ0VUdDdiTWEpIiBkPSJNNi4zOTksNTcuNjk5bDMuNzkyLTEzLjg0N2MtMi4wNzYtMy43NC0zLjE3LTcuOTc1LTMuMTY4LTEyLjI3MiBDNy4wMjgsMTcuNjQxLDE4LjM3Myw2LjMwMSwzMi4zMTIsNi4zMDFjNi43NjIsMC4wMDMsMTMuMTE1LDIuNjM2LDE3Ljg4OSw3LjQxNGM0Ljc3NCw0Ljc3OCw3LjQwMiwxMS4xNTEsNy40LDE3Ljk0NCBDNTcuNTk1LDQ1LjYzMyw0Ni4yNSw1NywzMi4zMTIsNTdjLTQuMDI0LDAtOC4wNzMtMS4wMTktMTEuNzQ0LTIuOTVMNi4zOTksNTcuNjk5eiBNMjAuODI4LDUxLjkxOGwwLjM0NiwwLjE4OCBDMjQuNjQ1LDUzLjk5OSwyOC40OTIsNTUsMzIuMzAyLDU1YzEyLjg0NiwwLDIzLjI5My0xMC40NzEsMjMuMjk5LTIzLjM0MWMwLjAwMi02LjI2LTIuNDE4LTEyLjEzLTYuODE0LTE2LjUzIFMzOC41MzgsOC4zMDQsMzIuMzEyLDguMzAxYy0xMi44MzYsMC0yMy4yODMsMTAuNDQzLTIzLjI4OCwyMy4yNzljLTAuMDAyLDQuMDg5LDEuMDcyLDguMTEzLDMuMTA3LDExLjYzOWwwLjIwOSwwLjM2MUw5LjIzOSw1NC45MDIgTDIwLjgyOCw1MS45MTh6IE0zMi4zMTIsNTNjLTMuNjg2LDAtNy40MTUtMS4wNi0xMC43OTMtMy4wNjNsLTAuNDM3LTAuMzE4bC04Ljg1NCwyLjMyM2wyLjM4Mi04LjY5MWwtMC4yNDQtMC4zODcgYy0yLjEyMy0zLjM3Ni0zLjI0My03LjI3MS0zLjI0MS0xMS4yNjljMC4wMDQtMTEuNjcsOS41MTMtMjEuMTY1LDIxLjE5NS0yMS4xNjVjNS42NDIsMC4wMDIsMTAuOTYxLDIuMjE4LDE0Ljk3OSw2LjIzOSBjNCw0LjAwMyw2LjIwMiw5LjM0NSw2LjIsMTUuMDM5QzUzLjQ5NSw0My40NDgsNDMuOTksNTMsMzIuMzEyLDUzeiBNMjIuNTgzLDQ4LjI0MkMyNS42NDEsNTAuMDQ3LDI5LjAwMSw1MSwzMi4zMDQsNTEgYzEwLjU4NCwwLDE5LjE5MS04LjY1NCwxOS4xOTUtMTkuMjkyYzAuMDAyLTUuMTYxLTEuOTkyLTEwLTUuNjE0LTEzLjYyNWMtMy42NDItMy42NDQtOC40NTktNS42NTEtMTMuNTY1LTUuNjUzIGMtMTAuNTgxLDAtMTkuMTkxLDguNTk4LTE5LjE5NSwxOS4xNjZjLTAuMDAyLDMuNjE5LDEuMDEyLDcuMTQ2LDIuOTMzLDEwLjIwMWwwLjcxNSwxLjEzMWwtMS42OTgsNi4xOTlsNi40MjktMS42ODdMMjIuNTgzLDQ4LjI0MnoiLz48bGluZWFyR3JhZGllbnQgaWQ9ImZ6RjVLNzZ1flFQak1JZ0VUdDdiTWIiIHgxPSIzMi4zMDUiIHgyPSIzMi4zMDUiIHkxPSIxNy41IiB5Mj0iNDYuNTI3IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgc3ByZWFkTWV0aG9kPSJyZWZsZWN0Ij48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM2ZGM3ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlNmFiZmYiLz48L2xpbmVhckdyYWRpZW50PjxwYXRoIGZpbGw9InVybCgjZnpGNUs3NnV+UVBqTUlnRVR0N2JNYikiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTI2LjEyLDIxLjIxOWMtMC40NjQtMS4wMzEtMC45NTItMS4wNTItMS4zOTQtMS4wNyBjLTAuMzYxLTAuMDE1LTAuNzc0LTAuMDE1LTEuMTg3LTAuMDE1Yy0wLjQxMywwLTEuMDg0LDAuMTU1LTEuNjUxLDAuNzc1Yy0wLjU2OCwwLjYyLTIuMTY4LDIuMTE4LTIuMTY4LDUuMTY0IGMwLDMuMDQ3LDIuMjE5LDUuOTkxLDIuNTI5LDYuNDA1YzAuMzEsMC40MTMsNC4yODQsNi44NjUsMTAuNTc5LDkuMzQ3YzUuMjMxLDIuMDYzLDYuMjk2LDEuNjUzLDcuNDMxLDEuNTQ5IGMxLjEzNS0wLjEwMywzLjY2NC0xLjQ5OCw0LjE4LTIuOTQ0YzAuNTE2LTEuNDQ2LDAuNTE2LTIuNjg1LDAuMzYxLTIuOTQ0Yy0wLjE1NS0wLjI1OC0wLjU2OC0wLjQxMy0xLjE4Ny0wLjcyMyBjLTAuNjE5LTAuMzEtMy42NjQtMS44MDgtNC4yMzItMi4wMTRjLTAuNTY4LTAuMjA2LTAuOTgxLTAuMzEtMS4zOTQsMC4zMWMtMC40MTMsMC42MTktMS41OTksMi4wMTQtMS45NiwyLjQyNyBjLTAuMzYxLDAuNDE0LTAuNzIzLDAuNDY1LTEuMzQyLDAuMTU2Yy0wLjYxOS0wLjMxMS0yLjYxNC0wLjk2NC00Ljk4LTMuMDc0Yy0xLjg0MS0xLjY0MS0zLjA4NC0zLjY2OC0zLjQ0NS00LjI4OCBjLTAuMzYxLTAuNjE5LTAuMDM5LTAuOTU1LDAuMjcyLTEuMjY0YzAuMjc4LTAuMjc3LDAuNjE5LTAuNzIzLDAuOTI5LTEuMDg1YzAuMzA5LTAuMzYyLDAuNDEyLTAuNjIsMC42MTktMS4wMzMgYzAuMjA2LTAuNDE0LDAuMTAzLTAuNzc1LTAuMDUyLTEuMDg1UzI2LjY3LDIyLjQ0MywyNi4xMiwyMS4yMTl6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=" height={32} width={32}/>
+
+           </div>
+
             </div>
+
+            
+
           </div>
         </div>
-        <div className="mt-8 border-t border-gray-200 pt-8 text-sm text-center">
-          © 2023 urbanlakesprings. All rights reserved.
+
+        {/* Bottom Copyright */}
+        <div className="mt-8 border-t border-white pt-4 text-sm text-center">
+          © 2025 <span className="font-bold">urbanlakesprings</span>. All rights reserved.
         </div>
       </div>
     </footer>
-  )
+  );
 }
-

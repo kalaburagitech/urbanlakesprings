@@ -35,7 +35,7 @@ export default function BankPopup() {
         {/* Glassmorphism Header */}
         <div className="w-full bg-white bg-opacity-30 backdrop-blur-lg text-center py-3 rounded-md shadow-md">
           <h2 className="text-lg font-bold text-gray-900 tracking-wide uppercase">
-            Authorized Banks
+            Approved By
           </h2>
         </div>
 

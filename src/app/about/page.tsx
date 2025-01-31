@@ -1,11 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button"; // ✅ Using shadCN UI Button
-import { useModal } from "@/context/modal-context"; // ✅ Import the modal context
+import { Button } from "@/components/ui/button";
+import { useModal } from "@/context/modal-context";
 import Image from "next/image";
 
 export default function AboutPage() {
-  const { openModal } = useModal(); // ✅ Use the modal hook
+  const { openModal } = useModal();
 
   return (
     <section className="container mx-auto py-16 px-6 lg:px-12 text-gray-900 font-[Poppins]">
@@ -15,19 +15,27 @@ export default function AboutPage() {
           About NCC Urban Lake Springs
         </h1>
         <p className="text-lg leading-relaxed text-gray-700 italic">
-          <strong className="text-[#FFD700]">NCC Urban Lake Springs</strong>, an <strong>Abode of Peace!</strong> 
-          Located in <strong>JP Nagar, Bangalore</strong>, this premium residential project offers 
-          an <strong>elegant and vibrant community living experience</strong>. Designed to bring 
-          <strong> comfort, luxury, and connectivity</strong>, the project is surrounded by 
-          <strong> renowned schools, hospitals, business hubs, and recreational spots</strong>.
+          <strong className="text-[#FFD700]">NCC Urban Lake Springs</strong>, an{" "}
+          <strong>Abode of Peace!</strong>
+          Located in <strong>JP Nagar, Bangalore</strong>, this premium
+          residential project offers an{" "}
+          <strong>elegant and vibrant community living experience</strong>.
+          Designed to bring
+          <strong> comfort, luxury, and connectivity</strong>, the project is
+          surrounded by
+          <strong>
+            {" "}
+            renowned schools, hospitals, business hubs, and recreational spots
+          </strong>
+          .
         </p>
       </div>
 
       {/* CTA Button */}
       <div className="text-center mt-8">
-        <Button 
+        <Button
           className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] hover:brightness-110 px-6 py-3 rounded-md text-black font-semibold shadow-lg transition-all duration-300"
-          onClick={openModal} // ✅ Opens the contact modal
+          onClick={openModal}
         >
           Get Complete Details
         </Button>
@@ -36,8 +44,8 @@ export default function AboutPage() {
       {/* Image Section */}
       <div className="mt-12 flex justify-center relative">
         <div className="relative rounded-lg overflow-hidden shadow-2xl ">
-          <Image 
-            src="/images/property2.jpg" // ✅ Ensure this image exists in `public/images/`
+          <Image
+            src="/images/property2.jpg"
             alt="NCC Urban Lake Springs"
             width={800}
             height={450}

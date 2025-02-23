@@ -4,6 +4,8 @@ import { FC } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Novatrix } from "uvcanvas"
+
 
 interface PriceCardProps {
   title: string;
@@ -28,6 +30,8 @@ const PriceCard: FC<PriceCardProps> = ({ title, price, image, description, openM
       variants={cardVariants}
       whileHover={{ scale: 1.05, rotateX: 5, rotateY: 5 }}
     >
+      <Novatrix />
+
       {/* Property Image with Overlay */}
       <div className="relative h-64 overflow-hidden rounded-t-xl">
         <Image

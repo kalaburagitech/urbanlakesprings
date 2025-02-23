@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
+import { Lumiflex } from "uvcanvas"; // Import Lumiflex background effect
 
 export default function BrochureModal() {
   const { isOpen, closeModal } = useModal();
@@ -60,23 +61,33 @@ export default function BrochureModal() {
           <div className="absolute -inset-8 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 w-[200px] h-[200px] rounded-full blur-xl opacity-50 animate-spin-slower"></div>
         </div>
 
+        {/* Lumiflex Background Effect */}
+        <div className="absolute inset-0 z-0">
+          <Lumiflex />
+        </div>
+
         {/* Main Modal Card */}
         <div className="relative bg-white flex flex-col sm:flex-row rounded-2xl shadow-2xl overflow-hidden w-full p-8 backdrop-blur-lg bg-opacity-40 z-10 border border-gray-200">
           <button onClick={closeModal} className="absolute top-4 right-4 text-gray-600 text-lg font-bold hover:text-gray-900">✕</button>
 
-          {/* Left Sidebar */}
-          <div className="relative w-full sm:w-1/2 flex flex-col justify-center items-center text-white p-8 bg-cover bg-center font-serif overflow-hidden" style={{ backgroundImage: "url('/images/property5.jpg')" }}>
-            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-l-2xl"></div>
+          {/* Left Sidebar with Background Image Only (No White or Glass Effect) */}
+          <div className="relative flex-1 sm:flex-1 flex flex-col justify-center items-center text-white p-8 bg-cover bg-center font-serif overflow-hidden hover:scale-105 transition-transform duration-500" style={{ backgroundImage: "url('/images/property5.jpg')" }}>
             <div className="relative z-10 text-center">
               <Image src="/images/logo.png" alt="NCC Logo" width={100} height={100} className="mb-4" />
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white drop-shadow-lg">NCC Urban Lake Springs</h2>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white drop-shadow-xl">
+                NCC Urban Lake Springs
+              </h2>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="p-8 w-full sm:w-1/2 bg-white rounded-r-2xl backdrop-blur-xl bg-opacity-80 font-serif shadow-xl">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 text-center">Download Brochure Now</h2>
-            <p className="text-gray-600 text-center mb-6 text-base sm:text-lg">Please share your details to download brochure</p>
+          {/* Contact Form with Glass Transparent Background */}
+          <div className="p-8 flex-1 sm:flex-1 bg-transparent backdrop-blur-lg bg-opacity-30 rounded-r-2xl font-serif shadow-xl">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 text-center">
+              Download Brochure Now
+            </h2>
+            <p className="text-gray-600 text-center mb-6 text-base sm:text-lg">
+              Please share your details to download brochure
+            </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <Input

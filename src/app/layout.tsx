@@ -7,6 +7,7 @@ import Footer from "./footer/page";
 import ContactModal from "@/components/ContactModel";
 import type React from "react"; // Import React
 import Script from "next/script";
+import ContactButton from "./contacticon/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,14 +67,14 @@ const geistMono = Geist_Mono({
 //   },
 // };
 export const metadata: Metadata = {
-  title: "DreamHome - Find Your Perfect Home",
+  title: "NCC Urban Lake Springs - under-construction property in J P Nagar Bangalore",
   description: "Find your dream home with the best property deals and offers.",
   keywords:
     "real estate, property, dream home, home for sale, real estate listing",
-  authors: [{ name: "DreamHome Team" }],
+  authors: [{ name: "NCC Urban Lake Springs Team" }],
   robots: "index, follow",
   openGraph: {
-    title: "DreamHome - Your Dream Property Awaits",
+    title: "NCC Urban Lake Springs - Your Dream Property Awaits",
     description: "Luxury homes and apartments available at amazing deals!",
     url: "https://urbanlakesprings.in/",
     images: [{ url: "/images/property2.jpg" }],
@@ -113,6 +114,7 @@ export default function RootLayout({
           <Navbar />
           <main>{children}</main>
           <ContactModal />
+          <ContactButton />
           <Footer />
         </ModalProvider>
       </body>

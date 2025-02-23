@@ -1,94 +1,129 @@
 "use client";
 
 import { useState } from "react";
-import { useModal } from "@/context/modal-context"; // ✅ Correct Import
+import axios from "axios";
+import { useModal } from "@/context/modal-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { FcGoogle } from "react-icons/fc";
+import Image from "next/image";
 
-export default function ContactModal() {
+export default function BrochureModal() {
   const { isOpen, closeModal } = useModal();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [contact, setContact] = useState("");
 
-  if (!isOpen) return null; // ✅ Hide modal when not open
+  if (!isOpen) return null;
 
-  // 📌 Function to download the PDF
-  const handleDownloadPDF = () => {
-    const pdfUrl = "/pdf/price-list.pdf"; // ✅ Ensure the PDF is in `public/pdf/`
-    const link = document.createElement("a");
-    link.href = pdfUrl;
-    link.download = "RealEstate_Price_List.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  // 📌 Handle form submission
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsSubmitted(true);
+    setLoading(true);
+    setError(null);
 
-    // 📌 Download PDF automatically after successful submission
-    setTimeout(() => {
-      handleDownloadPDF();
-      closeModal();
-      setIsSubmitted(false);
-    }, 1500);
+    if (!/^[6789]\d{9}$/.test(contact)) {
+      setError("Please enter a valid phone number starting with 6, 7, 8, or 9.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await axios.post("https://reakestateemail.onrender.com/send-email", {
+        contact,
+        email, // No need to append @gmail.com
+      });
+
+      if (response.data.success) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          closeModal();
+          setIsSubmitted(false);
+        }, 1500);
+      } else {
+        throw new Error(response.data.message || "Failed to submit details");
+      }
+    } catch {
+      setError("Failed to submit details. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full relative">
-        <button
-          onClick={closeModal}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-        >
-          ✕
-        </button>
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+      {/* Rotating Glowing Effect Container */}
+      <div className="relative flex items-center justify-center w-full max-w-3xl overflow-hidden">
+        {/* Animated Border Effect */}
+        <div className="absolute inset-0 w-full h-full animate-spin-slow rounded-2xl overflow-hidden">
+          <div className="absolute -inset-8 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 w-[200px] h-[200px] rounded-full blur-xl opacity-50 animate-spin-slower"></div>
+        </div>
 
-        <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+        {/* Main Modal Card */}
+        <div className="relative bg-white flex flex-col sm:flex-row rounded-2xl shadow-2xl overflow-hidden w-full p-8 backdrop-blur-lg bg-opacity-40 z-10 border border-gray-200">
+          <button onClick={closeModal} className="absolute top-4 right-4 text-gray-600 text-lg font-bold hover:text-gray-900">✕</button>
 
-        {!isSubmitted ? (
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-sm font-semibold mb-2">
-                Your Name
-              </label>
-              <Input id="name" type="text" placeholder="John Doe" required className="w-full p-3 border border-gray-300 rounded-md" />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                Your Email
-              </label>
-              <Input id="email" type="email" placeholder="john.doe@example.com" required className="w-full p-3 border border-gray-300 rounded-md" />
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="message" className="block text-sm font-semibold mb-2">
-                Your Message
-              </label>
-              <textarea id="message" placeholder="Type your message here" required className="w-full p-3 border border-gray-300 rounded-md" rows={4}></textarea>
-            </div>
-
-            <div className="flex justify-end">
-              <Button onClick={closeModal} className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-md text-white mr-2">
-                Cancel
-              </Button>
-              <Button type="submit" className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-white">
-                Submit
-              </Button>
-            </div>
-          </form>
-        ) : (
-          <div className="text-center">
-            <h3 className="text-lg font-semibold text-green-600 mb-3">Thank you! Your request has been submitted.</h3>
-            <div className="flex justify-center gap-4">
-              <Button onClick={handleDownloadPDF} className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-white">
-                Download PDF
-              </Button>
+          {/* Left Sidebar */}
+          <div className="relative w-full sm:w-1/2 flex flex-col justify-center items-center text-white p-8 bg-cover bg-center font-serif overflow-hidden" style={{ backgroundImage: "url('/images/property5.jpg')" }}>
+            <div className="absolute inset-0 bg-black bg-opacity-50 rounded-l-2xl"></div>
+            <div className="relative z-10 text-center">
+              <Image src="/images/logo.png" alt="NCC Logo" width={100} height={100} className="mb-4" />
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white drop-shadow-lg">NCC Urban Lake Springs</h2>
             </div>
           </div>
-        )}
+
+          {/* Contact Form */}
+          <div className="p-8 w-full sm:w-1/2 bg-white rounded-r-2xl backdrop-blur-xl bg-opacity-80 font-serif shadow-xl">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 text-center">Download Brochure Now</h2>
+            <p className="text-gray-600 text-center mb-6 text-base sm:text-lg">Please share your details to download brochure</p>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <Input
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="border-2 p-4 rounded-lg w-full text-lg focus:ring-2 focus:ring-blue-500 transition-all bg-transparent"
+              />
+
+              <Input
+                type="text"
+                name="contact"
+                placeholder="Phone Number"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+                required
+                className="border-2 p-4 rounded-lg w-full text-lg focus:ring-2 focus:ring-blue-500 transition-all bg-transparent"
+              />
+
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+
+              <Button
+                type="submit"
+                disabled={loading}
+                className={`bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white py-4 px-8 rounded-lg w-full shadow-lg text-lg transition-all ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+              >
+                {loading ? "Submitting..." : "Submit"}
+              </Button>
+
+              <Button
+                type="button"
+                className="flex items-center justify-center w-full mt-3 border-2 py-4 px-8 rounded-lg gap-3 hover:bg-gray-100 shadow-md text-lg"
+              >
+                <FcGoogle size={24} /> Continue with Google
+              </Button>
+
+              {isSubmitted && (
+                <p className="text-green-500 text-center mt-3">Details submitted successfully! ✅</p>
+              )}
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   );

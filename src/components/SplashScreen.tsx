@@ -4,14 +4,22 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react"; // ✅ Close Icon
 
-export default function BankPopup() {
+interface BankPopupProps {
+  onFinish: () => void; // ✅ Callback when popup closes
+}
+
+export default function BankPopup({ onFinish }: BankPopupProps) {
   const [showPopup, setShowPopup] = useState(true);
 
   // Auto-hide the pop-up after 5 seconds
   useEffect(() => {
-    const timer = setTimeout(() => setShowPopup(false), 5000);
+    const timer = setTimeout(() => {
+      setShowPopup(false);
+      onFinish(); // ✅ Notify parent when hidden
+    }, 5000);
+
     return () => clearTimeout(timer);
-  }, []);
+  }, [onFinish]);
 
   if (!showPopup) return null; // Hide after time expires
 
@@ -26,20 +34,23 @@ export default function BankPopup() {
       >
         {/* Close Button */}
         <button
-          onClick={() => setShowPopup(false)}
+          onClick={() => {
+            setShowPopup(false);
+            onFinish();
+          }}
           className="absolute top-2 right-2 text-gray-700 hover:text-red-500 transition p-2 rounded-full bg-white shadow-md"
         >
           <X size={24} />
         </button>
 
-        {/* Glassmorphism Header */}
+        {/* Header */}
         <div className="w-full bg-white bg-opacity-30 backdrop-blur-lg text-center py-3 rounded-md shadow-md">
           <h2 className="text-lg font-bold text-gray-900 tracking-wide uppercase">
             Approved By
           </h2>
         </div>
 
-        {/* Bank Logos Container */}
+        {/* Bank Logos */}
         <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8 w-full">
           {/* HDFC Logo & Text */}
           <div className="flex flex-col items-center space-y-2">

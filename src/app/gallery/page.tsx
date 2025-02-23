@@ -6,13 +6,13 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Gallery Images
 const galleryImages = [
-  { id: 1, src: '/images/property1.jpg', title: 'Luxury Apartment' },
-  { id: 2, src: '/images/property2.jpg', title: 'Modern Villa' },
-  { id: 3, src: '/images/property3.jpg', title: 'Lake View Home', tall: true },
-  { id: 4, src: '/images/property4.jpg', title: 'Penthouse Suite' },
-  { id: 5, src: '/images/property5.jpg', title: 'Cozy Cottage' },
-  { id: 6, src: '/images/property6.jpg', title: 'Elegant Bungalow', tall: true },
-  { id: 7, src: '/images/property7.jpg', title: 'Modern Townhouse', tall: true },
+  { id: 1, src: '/images/property1.jpg', title: 'Ncc Urban lake springs Premium Luxury flats' },
+  { id: 2, src: '/images/property2.jpg', title: 'Modern premium 3bhk flats ' },
+  { id: 3, src: '/images/property3.jpg', title: 'lake view East facing premium 3bhk flats ', tall: true },
+  { id: 4, src: '/images/property4.jpg', title: 'Ncc Urban lake springs project Master Plan' },
+  { id: 5, src: '/images/property5.jpg', title: 'High Rise premium Apartment by Ncc urban lake springs' },
+  { id: 6, src: '/images/property6.jpg', title: 'Lake springs Module flats.', tall: true },
+  { id: 7, src: '/images/property7.jpg', title: 'Modern premium flats Module.', tall: true },
 ];
 
 export default function ImageGallery() {

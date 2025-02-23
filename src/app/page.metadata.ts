@@ -26,5 +26,5 @@ export const metadata: Metadata = {
       "Discover luxury living at NCC Urban Lake Springs in JP Nagar, Bangalore. Elegant apartments, world-class amenities, and a prime location.",
     images: ["/images/ncc-urban-lake-springs-twitter.jpg"],
   },
-}
+} 
 

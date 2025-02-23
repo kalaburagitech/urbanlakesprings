@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        'spin-slow': 'spin 10s linear infinite',
+        'spin-slower': 'spin 15s linear infinite',
+      },
       colors: {
         primary: '#FF5733',  // Define custom colors if needed
         'primary-foreground': '#fff', // Example color

@@ -6,10 +6,12 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { useModal } from "@/context/modal-context"; // Import your modal context
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { openModal } = useModal(); // Use modal context
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +24,6 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Price", href: "/price" },
-    { name: "Floor Plan", href: "/floorplan" },
     { name: "Location", href: "/location" },
     { name: "Gallery", href: "/gallery" },
   ];
@@ -35,6 +36,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
+          {/* Logo */}
           <Link href="/" className="flex items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -52,6 +54,7 @@ export default function Navbar() {
             </motion.div>
           </Link>
 
+          {/* Mobile Menu Toggle */}
           <Button
             variant="ghost"
             onClick={() => setOpen(!open)}
@@ -71,8 +74,9 @@ export default function Navbar() {
             </AnimatePresence>
           </Button>
 
+          {/* Desktop Navigation */}
           <motion.ul
-            className="hidden md:flex md:space-x-1 md:items-center"
+            className="hidden md:flex md:space-x-6 md:items-center"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, staggerChildren: 0.1 }}
@@ -89,15 +93,22 @@ export default function Navbar() {
                     transition: { delay: i * 0.1 },
                   }),
                 }}
+                className="relative group"
               >
                 <Link
                   href={item.href}
-                  className="text-gray-900 hover:text-primary px-3 py-2 rounded-md transition duration-300 hover:bg-gray-100"
+                  className="text-gray-900 hover:text-[#FFA500] px-3 py-2 rounded-md transition duration-300"
                 >
                   {item.name}
                 </Link>
+                {/* Gradient Underline on Hover */}
+                <motion.div
+                  className="absolute left-0 bottom-0 w-full h-[3px] bg-gradient-to-r from-[#FFD700] to-[#FFA500] scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                />
               </motion.li>
             ))}
+
+            {/* Contact Us Button (Opens Modal) */}
             <motion.li
               custom={navItems.length}
               variants={{
@@ -109,17 +120,18 @@ export default function Navbar() {
                 }),
               }}
             >
-              <Link
-                href="/contact"
-                className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+              <Button
+                onClick={openModal} // Opens contact modal
+                className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black px-4 py-2 rounded-md hover:brightness-110 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
               >
-                Contact
-              </Link>
+                Contact Us
+              </Button>
             </motion.li>
           </motion.ul>
         </div>
       </div>
 
+      {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -137,27 +149,34 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.2 }}
+                  className="relative group"
                 >
                   <Link
                     href={item.href}
-                    className="block px-6 py-2 text-gray-900 hover:text-primary hover:bg-gray-100 transition duration-300"
+                    className="block px-6 py-2 text-gray-900 hover:text-[#FFA500] transition duration-300"
                   >
                     {item.name}
                   </Link>
+                  {/* Gradient Underline on Hover */}
+                  <motion.div
+                    className="absolute left-6 bottom-0 w-[80%] h-[3px] bg-gradient-to-r from-[#FFD700] to-[#FFA500] scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                  />
                 </motion.li>
               ))}
+
+              {/* Contact Us Button (Opens Modal) */}
               <motion.li
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.2 }}
               >
-                <Link
-                  href="/contact"
-                  className="block mx-6 py-2 bg-primary text-white text-center rounded-md hover:bg-primary-dark transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+                <Button
+                  onClick={openModal}
+                  className="block mx-6 py-2 bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black text-center rounded-md hover:brightness-110 transition duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
                 >
-                  Contact
-                </Link>
+                  Contact Us
+                </Button>
               </motion.li>
             </ul>
           </motion.div>
